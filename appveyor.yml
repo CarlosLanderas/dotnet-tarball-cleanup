@@ -7,11 +7,12 @@ init:
 
 before_build:
   # Display .NET Core version
-  - cmd: dotnet --version
-  - cmd: dotnet restore ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj --verbosity m
+  - dotnet --version
+  - dotnet restore ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj --verbosity m
 
 build_script:
-  - cmd: dotnet build -c Release -o ./artifacts ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj
+  - dotnet build -c Release ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj
+  - dotnet publish -c Release -o ./artifacts  ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj
 
 artifacts:
 - path: .\artifacts\**\*.nupkg
