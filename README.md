@@ -4,6 +4,17 @@
 
 ## A simple global tool to list and remove sdks and runtimes when installed from tarballs using dotnet-install scripts
 
+### Instructions:
+
+Be sure your DOTNET_ROOT environment variable is pointing to the installation folder created by dotnet-install scripts
+
+Example:
+
+```
+DOTNET_ROOT=/home/clanderas/.dotnet
+```
+
+
 ### Usage:
 
 
