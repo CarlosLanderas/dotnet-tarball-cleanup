@@ -7,7 +7,7 @@
 ### Usage:
 
 
-**Remove sdk by version**
+## **Remove sdk by version**
 ```
  dotnet-tarball-cleanup sdks remove --version 2.2.401
 ```
@@ -20,7 +20,7 @@ Sdk 2.2.401 removed ✔
 
 ```
 
-**Remove runtime by version**
+## **Remove runtime by version**
 ```
  dotnet-tarball-cleanup runtimes remove --version 2.2.6
 ```
@@ -31,7 +31,7 @@ Looking for runtime 2.2.6
 Removing: /home/clanderas/.dotnet/shared/Microsoft.AspNetCore.All/2.2.6 Done! ✔
 ```
 
-**Remove all sdks**
+## **Remove all sdks**
 ```
 dotnet-tarball-cleanup sdks remove --all
 
@@ -51,7 +51,7 @@ Sdk 3.0.100-preview8-013656 removed ✔
 
 ```
 
-**Remove all runtimes**
+## **Remove all runtimes**
 ```
 dotnet-tarball-cleanup runtimes remove --all
 ```
@@ -79,7 +79,7 @@ Removing: /home/clanderas/.dotnet/shared/Microsoft.NETCore.App/3.0.0-preview8-28
 
 ## -> Warning, don't clean all runtimes prior to cleaning all sdks
 
-**List sdks**
+## **List sdks**
 
 ```
 dotnet-tarball-cleanup sdks list
@@ -95,7 +95,7 @@ Installed SDKs ✔
 
 ```
 
-**List runtimes**
+## **List runtimes**
 
 ```
 dotnet-tarball-cleanup runtimes list
