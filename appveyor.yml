@@ -1,0 +1,22 @@
+image: Visual Studio 2017
+branches:
+  only:
+  - master
+init:
+  - cmd: git config --global core.autocrlf true
+
+before_build:
+  # Display .NET Core version
+  - cmd: dotnet --version
+  - cmd: dotnet restore ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj --verbosity m
+
+build_script:
+  - cmd: dotnet publish ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj
+
+deploy:
+- provider: NuGet
+  api_key:
+    secure: lWdb5HC5lSqY9HB5WC6BppCvDcQmHbf2lwizVAHIgopsMjCxUvbEOBeB84bgEyMn
+  on:
+    branch: master
+    appveyor_repo_tag: true

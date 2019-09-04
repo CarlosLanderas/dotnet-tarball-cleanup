@@ -4,7 +4,7 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.0</TargetFramework>
         <RootNamespace>dotnet_tarball_cleanup</RootNamespace>
-        <PackAsTool>false</PackAsTool>
+        <PackAsTool>true</PackAsTool>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Carlos Landeras</Authors>
         <Description>.NET Core global tool to list and remove SDKs and runtimes tarballs installed with dotnet-install scripts</Description>
