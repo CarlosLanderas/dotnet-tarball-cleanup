@@ -39,7 +39,7 @@ namespace dotnet_tarball_cleanup
             {
                 if (!string.IsNullOrEmpty(args.Data))
                 {
-                   result.AppendToStdError(args.Data);
+                    result.AppendToStdError(args.Data);
                 }
             };
 

@@ -8,8 +8,8 @@ namespace dotnet_tarball_cleanup
 {
     public class DotnetSdk
     {
-        private static string[] sdkResources = new[] {"host/fxr", "sdk"};
-        
+        private static string[] sdkResources = new[] { "host/fxr", "sdk" };
+
         public static void Remove(string identifier, IConsole console)
         {
             var directory = Path.GetDirectoryName(DotNetExe.FullPath);
@@ -31,12 +31,12 @@ namespace dotnet_tarball_cleanup
                     Directory.Delete(folder, true);
                     console.WriteWithCheck("Done!");
                 }
-                catch (Exception e )
+                catch (Exception e)
                 {
                     console.WriteWithError($"Error removing folder {folder} - Err: {e.Message}");
                 }
             }
-            
+
             console.WriteWithCheck($"Sdk {identifier} removed");
         }
     }

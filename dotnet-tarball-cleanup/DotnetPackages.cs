@@ -15,7 +15,7 @@ namespace dotnet_tarball_cleanup
         Sdk,
         Runtime
     }
-    
+
     public class DotnetPackages
     {
         private static IDictionary<PackageType, string> commands = new Dictionary<PackageType, string>
@@ -23,7 +23,7 @@ namespace dotnet_tarball_cleanup
             [PackageType.Sdk] = "--list-sdks",
             [PackageType.Runtime] = "--list-runtimes"
         };
-        
+
         public static async Task<IEnumerable<(string version, string props)>> Get(PackageType type, IConsole console)
         {
             var dotnet = new Dotnet(console);
@@ -34,7 +34,7 @@ namespace dotnet_tarball_cleanup
             {
                 result.Error(console);
             }
-            
+
             return DotnetParser.GetPackages(result.Output);
         }
     }

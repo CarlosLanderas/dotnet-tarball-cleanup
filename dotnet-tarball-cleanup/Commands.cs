@@ -19,7 +19,7 @@ namespace dotnet_tarball_cleanup
             app.ShowHelp();
             return 1;
         }
-        
+
         [Command("sdks", Description = "Manage installed Sdks"),
          Subcommand(typeof(List), typeof(Remove))]
         private class Sdks
@@ -44,7 +44,7 @@ namespace dotnet_tarball_cleanup
             {
                 [Option(Description = "You must specify the SDK version")]
                 public string Version { get; }
-                
+
                 [Option(Description = "Remove all installed SDKs")]
                 public bool All { get; }
 
@@ -54,13 +54,13 @@ namespace dotnet_tarball_cleanup
                     {
                         console.WriteErrorAndExit("You should pass a sdk --version or the --all option");
                     }
-                    
+
                     if (!All)
                     {
-                       RemoveSdk(Version, console);
-                       return;
+                        RemoveSdk(Version, console);
+                        return;
                     }
-                    
+
                     var installed = await DotnetPackages.Get(PackageType.Sdk, console);
                     foreach (var sdk in installed)
                     {
@@ -104,7 +104,7 @@ namespace dotnet_tarball_cleanup
             {
                 [Option(Description = "You must specify the Runtime version")]
                 public string Version { get; }
-                
+
                 [Option(Description = "Removes all installed runtimes")]
                 public bool All { get; }
 
@@ -115,9 +115,9 @@ namespace dotnet_tarball_cleanup
                         console.WriteErrorAndExit("You should pass a runtime --version or the --all option");
                     }
 
-                    
+
                     var installed = await DotnetPackages.Get(PackageType.Runtime, console);
-                    
+
                     if (!All)
                     {
                         var target = installed.FirstOrDefault(i => i.version == Version);
@@ -128,8 +128,8 @@ namespace dotnet_tarball_cleanup
                         removeRuntime(target.version, target.props, console);
                         return;
                     }
-                    
-                    
+
+
                     foreach (var runtime in installed)
                     {
                         removeRuntime(runtime.version, runtime.props, console);

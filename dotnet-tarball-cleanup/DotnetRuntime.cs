@@ -8,8 +8,8 @@ namespace dotnet_tarball_cleanup
 {
     public class DotnetRuntime
     {
-        private static string[] runtimeResources = new[] {"shared"};
-        
+        private static string[] runtimeResources = new[] { "shared" };
+
         public static void Remove(string version, string identifier, IConsole console)
         {
             var directory = Path.GetDirectoryName(DotNetExe.FullPath);
