@@ -108,6 +108,7 @@ namespace dotnet_tarball_cleanup
                             console.WriteWithError($"Runtime version {Version} was not found");
                         }
                         removeRuntime(target.version, target.props, console);
+                        return;
                     }
                     
                     
