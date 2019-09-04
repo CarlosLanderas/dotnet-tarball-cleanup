@@ -4,6 +4,12 @@
 
 ## A simple global tool to list and remove sdks and runtimes when installed from tarballs using dotnet-install scripts
 
+### Instalation:
+
+```
+dotnet tool install dotnet-tarball-cleanup --global
+```
+
 ### Instructions:
 
 Be sure your DOTNET_ROOT environment variable is pointing to the installation folder created by dotnet-install scripts
