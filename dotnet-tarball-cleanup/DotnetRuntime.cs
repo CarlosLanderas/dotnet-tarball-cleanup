@@ -31,7 +31,7 @@ namespace dotnet_tarball_cleanup
                     }
                     catch (Exception e)
                     {
-                        console.WriteWithError($"Error removing folder {runtimePath}");
+                        console.WriteWithError($"Error removing folder {runtimePath} - Err: {e.Message}");
                     }
                 }
             }

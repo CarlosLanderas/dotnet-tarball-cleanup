@@ -31,9 +31,9 @@ namespace dotnet_tarball_cleanup
                     Directory.Delete(folder, true);
                     console.WriteWithCheck("Done!");
                 }
-                catch (Exception e)
+                catch (Exception e )
                 {
-                    console.WriteWithError($"Error removing folder {folder}");
+                    console.WriteWithError($"Error removing folder {folder} - Err: {e.Message}");
                 }
             }
             
