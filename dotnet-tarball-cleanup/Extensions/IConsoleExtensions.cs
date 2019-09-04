@@ -22,5 +22,11 @@ namespace dotnet_tarball_cleanup.Extensions
             console.WriteLine("");
             console.ResetColor();
         }
+
+        public static void WriteErrorAndExit(this IConsole console, string text)
+        {
+            WriteWithError(console, text);
+            Environment.Exit(-1);
+        }
     }
 }

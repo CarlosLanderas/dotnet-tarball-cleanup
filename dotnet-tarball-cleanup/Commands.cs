@@ -13,6 +13,13 @@ namespace dotnet_tarball_cleanup
      Subcommand(typeof(Sdks), typeof(Runtimes))]
     public class Commands
     {
+        private int OnExecute(CommandLineApplication app, IConsole console)
+        {
+            console.WriteLine("You must specify at a subcommand.");
+            app.ShowHelp();
+            return 1;
+        }
+        
         [Command("sdks", Description = "Manage installed Sdks"),
          Subcommand(typeof(List), typeof(Remove))]
         private class Sdks
@@ -43,6 +50,11 @@ namespace dotnet_tarball_cleanup
 
                 private async Task OnExecute(IConsole console)
                 {
+                    if (!All && Version == default)
+                    {
+                        console.WriteErrorAndExit("You should pass a sdk --version or the --all option");
+                    }
+                    
                     if (!All)
                     {
                        RemoveSdk(Version, console);
@@ -98,6 +110,12 @@ namespace dotnet_tarball_cleanup
 
                 private async Task OnExecute(IConsole console)
                 {
+                    if (!All && Version == default)
+                    {
+                        console.WriteErrorAndExit("You should pass a runtime --version or the --all option");
+                    }
+
+                    
                     var installed = await DotnetPackages.Get(PackageType.Runtime, console);
                     
                     if (!All)
@@ -105,7 +123,7 @@ namespace dotnet_tarball_cleanup
                         var target = installed.FirstOrDefault(i => i.version == Version);
                         if (target.version == default)
                         {
-                            console.WriteWithError($"Runtime version {Version} was not found");
+                            console.WriteErrorAndExit($"Runtime version {Version} was not found");
                         }
                         removeRuntime(target.version, target.props, console);
                         return;
