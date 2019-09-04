@@ -4,7 +4,9 @@
 
 ## A simple global tool to list and remove sdks and runtimes when installed from tarballs using dotnet-install scripts
 
-### Instalation:
+This tool is a work in progress
+
+### Installation:
 
 ```
 dotnet tool install dotnet-tarball-cleanup --global
