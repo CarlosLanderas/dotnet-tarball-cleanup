@@ -11,7 +11,11 @@ before_build:
   - cmd: dotnet restore ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj --verbosity m
 
 build_script:
-  - cmd: dotnet publish ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj
+  - cmd: dotnet build -c Release -o ./artifacts ./dotnet-tarball-cleanup/dotnet-tarball-cleanup.csproj
+
+artifacts:
+- path: .\artifacts\**\*.nupkg
+  name: NuGet
 
 deploy:
 - provider: NuGet

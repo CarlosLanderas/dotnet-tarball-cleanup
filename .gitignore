@@ -1,4 +1,5 @@
 .idea/
+artifacts*/
 *.swp
 *.*~
 project.lock.json
