@@ -1,7 +1,5 @@
 image: ubuntu
-branches:
-  only:
-  - master
+
 init:
   - cmd: git config --global core.autocrlf true
 
