@@ -1,14 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
+        <Version>0.1.0</Version>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.0</TargetFramework>
         <RootNamespace>dotnet_tarball_cleanup</RootNamespace>
+        <PackAsTool>true</PackAsTool>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Carlos Landeras</Authors>
+        <Description>.NET Core global tool to list and remove SDKs and runtimes tarballs installed with dotnet-install scripts</Description>
+        <RepositoryUrl>https://github.com/CarlosLanderas/dotnet-tarball-cleanup</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/CarlosLanderas/dotnet-tarball-cleanup</PackageProjectUrl>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
     </ItemGroup>
-
 </Project>

@@ -9,7 +9,7 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace dotnet_tarball_cleanup
 {
-    [Command(Name = "dotnet-tarball-cleanup", Description = "A global tool to clean SDKs and runtimes tarballs"),
+    [Command(Name = "dotnet-tarball-cleanup", Description = ".NET Core global tool to list and remove SDKs and runtimes tarballs installed with dotnet-install scripts"),
      Subcommand(typeof(Sdks), typeof(Runtimes))]
     public class Commands
     {
@@ -59,7 +59,7 @@ namespace dotnet_tarball_cleanup
                 private void RemoveSdk(string identifier, IConsole console)
                 {
                     console.WriteLine($"Looking for sdk {identifier}");
-                    DotnetPackages.RemoveSdk(identifier, console);
+                    DotnetSdk.Remove(identifier, console);
                 }
             }
         }
@@ -121,7 +121,7 @@ namespace dotnet_tarball_cleanup
                 private void removeRuntime(string identifier, string version, IConsole console)
                 {
                     console.WriteLine($"Looking for runtime {identifier}");
-                    DotnetPackages.RemoveRuntime(identifier, version, console);
+                    DotnetRuntime.Remove(identifier, version, console);
                 }
             };
         }

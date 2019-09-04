@@ -24,10 +24,6 @@ namespace dotnet_tarball_cleanup
             [PackageType.Runtime] = "--list-runtimes"
         };
         
-        private static string[] sdkResources = new[] {"host/fxr", "sdk"};
-        private static string[] runtimeResources = new[] {"shared"};
-
-        
         public static async Task<IEnumerable<(string version, string props)>> Get(PackageType type, IConsole console)
         {
             var dotnet = new Dotnet(console);
@@ -41,63 +37,5 @@ namespace dotnet_tarball_cleanup
             
             return DotnetParser.GetPackages(result.Output);
         }
-
-        public static void RemoveSdk(string identifier, IConsole console)
-        {
-            var directory = Path.GetDirectoryName(DotNetExe.FullPath);
-
-            var sdkFolders = sdkResources
-                .Select(r => Path.Combine(directory, r, identifier))
-                .Where(Directory.Exists);
-
-            if (!sdkFolders.Any())
-            {
-                console.WriteWithError($"No sdk version {identifier} installed ");
-            }
-
-            foreach (var folder in sdkFolders)
-            {
-                try
-                {
-                    console.Write($"Removing: {folder} ");
-                    Directory.Delete(folder, true);
-                    console.WriteWithCheck("Done!");
-                }
-                catch (Exception e)
-                {
-                    console.WriteWithError($"Error removing folder {folder}");
-                }
-            }
-            
-            console.WriteWithCheck($"Sdk {identifier} removed");
-        }
-
-        public static void RemoveRuntime(string version, string identifier, IConsole console)
-        {
-            var directory = Path.GetDirectoryName(DotNetExe.FullPath);
-
-            var runtimeFolders = runtimeResources
-                .Select(r => Path.Combine(directory, r, identifier))
-                .Where(Directory.Exists);
-
-            foreach (var folder in runtimeFolders)
-            {
-                var runtimePath = Path.Combine(folder, version);
-                if (Directory.Exists(runtimePath))
-                {
-                    try
-                    {
-                        console.Write($"Removing: {runtimePath} ");
-                        Directory.Delete(runtimePath, true);
-                        console.WriteWithCheck("Done!");
-                    }
-                    catch (Exception e)
-                    {
-                        console.WriteWithError($"Error removing folder {runtimePath}");
-                    }
-                }
-            }
-        }
-
     }
 }
