@@ -12,7 +12,7 @@ This tool is a work in progress
 dotnet tool install dotnet-tarball-cleanup --global
 ```
 
-### Instructions:
+## Instructions:
 
 Be sure your DOTNET_ROOT environment variable is pointing to the installation folder created by dotnet-install scripts
 
@@ -23,10 +23,10 @@ DOTNET_ROOT=/home/clanderas/.dotnet
 ```
 
 
-### Usage:
+## Usage:
 
 
-## **Remove sdk by version**
+### **Remove sdk by version**
 ```
  dotnet-tarball-cleanup sdks remove --version 2.2.401
 ```
@@ -36,12 +36,25 @@ DOTNET_ROOT=/home/clanderas/.dotnet
 Looking for sdk 2.2.401
 Removing: /home/clanderas/.dotnet/sdk/2.2.401 Done! ✔
 Sdk 2.2.401 removed ✔
-
 ```
 
-## **Remove runtime by version**
+### **Remove runtime by version**
 ```
  dotnet-tarball-cleanup runtimes remove --version 2.2.6
+```
+
+### **Remove runtimes matching regex**
+
+Dotnet and AspNetCoreruntimes have different minor versions so using a regex makes easier to clean all of them:
+
+```
+dotnet-tarball-cleanup runtimes remove -r 3.0.0-preview5
+```
+**Output**
+```
+Removing runtimes using regex: 3.0.0-preview5
+Removing: /home/clanderas/.dotnet/shared/Microsoft.AspNetCore.App/3.0.0-preview5-19227-01 Done! ✔
+Removing: /home/clanderas/.dotnet/shared/Microsoft.NETCore.App/3.0.0-preview5-27626-15 Done! ✔
 ```
 
 **Output**
@@ -50,7 +63,13 @@ Looking for runtime 2.2.6
 Removing: /home/clanderas/.dotnet/shared/Microsoft.AspNetCore.All/2.2.6 Done! ✔
 ```
 
-## **Remove all sdks**
+**Output**
+```
+Looking for runtime 2.2.6
+Removing: /home/clanderas/.dotnet/shared/Microsoft.AspNetCore.All/2.2.6 Done! ✔
+```
+
+### **Remove all sdks**
 ```
 dotnet-tarball-cleanup sdks remove --all
 
@@ -70,7 +89,7 @@ Sdk 3.0.100-preview8-013656 removed ✔
 
 ```
 
-## **Remove all runtimes**
+### **Remove all runtimes**
 ```
 dotnet-tarball-cleanup runtimes remove --all
 ```
@@ -98,7 +117,7 @@ Removing: /home/clanderas/.dotnet/shared/Microsoft.NETCore.App/3.0.0-preview8-28
 
 ## -> Warning, don't clean all runtimes prior to cleaning all sdks
 
-## **List sdks**
+### **List sdks**
 
 ```
 dotnet-tarball-cleanup sdks list
@@ -114,7 +133,7 @@ Installed SDKs ✔
 
 ```
 
-## **List runtimes**
+### **List runtimes**
 
 ```
 dotnet-tarball-cleanup runtimes list

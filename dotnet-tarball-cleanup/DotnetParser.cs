@@ -8,7 +8,9 @@ namespace dotnet_tarball_cleanup
     {
         public static IEnumerable<(string package, string version)> GetPackages(string stdOutput)
         {
-            return (from s in stdOutput.Split(Environment.NewLine).Where(l => l.Length > 0)
+            return (
+                    from s in stdOutput.Split(Environment.NewLine)
+                    where s.Length > 0
                     let parts = s.Split(" ")
                     select new
                     {

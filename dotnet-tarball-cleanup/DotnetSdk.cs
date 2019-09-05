@@ -9,13 +9,12 @@ namespace dotnet_tarball_cleanup
     public class DotnetSdk
     {
         private static string[] sdkResources = new[] { "host/fxr", "sdk" };
+        private static string DOTNET_DIRECTORY = Path.GetDirectoryName(DotNetExe.FullPath);
 
         public static void Remove(string identifier, IConsole console)
         {
-            var directory = Path.GetDirectoryName(DotNetExe.FullPath);
-
             var sdkFolders = sdkResources
-                .Select(r => Path.Combine(directory, r, identifier))
+                .Select(r => Path.Combine(DOTNET_DIRECTORY, r, identifier))
                 .Where(Directory.Exists);
 
             if (!sdkFolders.Any())

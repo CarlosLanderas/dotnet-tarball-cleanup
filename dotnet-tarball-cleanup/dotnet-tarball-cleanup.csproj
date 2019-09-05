@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Version>0.1.0</Version>
+        <Version>0.2.0</Version>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.0</TargetFramework>
         <RootNamespace>dotnet_tarball_cleanup</RootNamespace>
@@ -12,7 +12,7 @@
         <PackageProjectUrl>https://github.com/CarlosLanderas/dotnet-tarball-cleanup</PackageProjectUrl>
     </PropertyGroup>
 
-    <ItemGroup>
+    <ItemGroup>      
       <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
     </ItemGroup>

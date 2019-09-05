@@ -24,6 +24,13 @@ namespace dotnet_tarball_cleanup
          Subcommand(typeof(List), typeof(Remove))]
         private class Sdks
         {
+            private int OnExecute(CommandLineApplication app, IConsole console)
+            {
+                console.WriteLine("You must specify a SDK subcommand");
+                app.ShowHelp();
+                return 1;
+            }
+            
             [Command(Description = "List installed Dotnet Sdks"), HelpOption]
             private class List
             {
@@ -42,7 +49,7 @@ namespace dotnet_tarball_cleanup
             [Command(Description = "Remove target Dotnet Sdk"), HelpOption]
             private class Remove
             {
-                [Option(Description = "You must specify the SDK version")]
+                [Option(Description = "SDK Version to be removed")]
                 public string Version { get; }
 
                 [Option(Description = "Remove all installed SDKs")]
@@ -52,7 +59,7 @@ namespace dotnet_tarball_cleanup
                 {
                     if (!All && Version == default)
                     {
-                        console.WriteErrorAndExit("You should pass a sdk --version or the --all option");
+                        console.WriteErrorAndExit("You should pass a sdk --version, --glob or the --all option");
                     }
 
                     if (!All)
@@ -80,6 +87,12 @@ namespace dotnet_tarball_cleanup
          Subcommand(typeof(List), typeof(Remove))]
         private class Runtimes
         {
+            private int OnExecute(CommandLineApplication app, IConsole console)
+            {
+                console.WriteLine("You must specify a Runtime subcommand");
+                app.ShowHelp();
+                return 1;
+            }
             [Command(Description = "List installed Dotnet Runtimes"), HelpOption]
             private class List
             {
@@ -102,23 +115,26 @@ namespace dotnet_tarball_cleanup
             [Command(Description = "Remove target Dotnet runtime"), HelpOption]
             private class Remove
             {
-                [Option(Description = "You must specify the Runtime version")]
+                [Option(Description = "Runtime version to be removed")]
                 public string Version { get; }
 
                 [Option(Description = "Removes all installed runtimes")]
                 public bool All { get; }
+                
+                [Option(Description = "Removes installed runtimes matching regex")]
+                public string Regex { get; }
+
 
                 private async Task OnExecute(IConsole console)
                 {
-                    if (!All && Version == default)
+                    if (!All && Version == default && Regex == default)
                     {
-                        console.WriteErrorAndExit("You should pass a runtime --version or the --all option");
+                        console.WriteErrorAndExit("You should pass a runtime --version, --regex or the --all option to remove runtime/s");
                     }
-
 
                     var installed = await DotnetPackages.Get(PackageType.Runtime, console);
 
-                    if (!All)
+                    if (!All && Regex == default)
                     {
                         var target = installed.FirstOrDefault(i => i.version == Version);
                         if (target.version == default)
@@ -129,6 +145,13 @@ namespace dotnet_tarball_cleanup
                         return;
                     }
 
+                    if (Regex != default)
+                    {
+                        console.WriteLine($"Removing runtimes using regex: {Regex}");
+                        DotnetRuntime.RemoveWithRegex(Regex, console);
+                        return;
+                    }
+
 
                     foreach (var runtime in installed)
                     {
@@ -136,7 +159,7 @@ namespace dotnet_tarball_cleanup
                     }
                 }
 
-                private void removeRuntime(string identifier, string version, IConsole console)
+                private void removeRuntime(string identifier, string version, IConsole console, string regex = default)
                 {
                     console.WriteLine($"Looking for runtime {identifier}");
                     DotnetRuntime.Remove(identifier, version, console);
