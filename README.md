@@ -43,6 +43,12 @@ Sdk 2.2.401 removed ✔
  dotnet-tarball-cleanup runtimes remove --version 2.2.6
 ```
 
+**Output**
+```
+Looking for runtime 2.2.6
+Removing: /home/clanderas/.dotnet/shared/Microsoft.AspNetCore.All/2.2.6 Done! ✔
+```
+
 ### **Remove runtimes matching regex**
 
 Dotnet and AspNetCore runtimes have different minor versions so using a regex makes easier to clean all of them:
@@ -55,18 +61,6 @@ dotnet-tarball-cleanup runtimes remove -r 3.0.0-preview5
 Removing runtimes using regex: 3.0.0-preview5
 Removing: /home/clanderas/.dotnet/shared/Microsoft.AspNetCore.App/3.0.0-preview5-19227-01 Done! ✔
 Removing: /home/clanderas/.dotnet/shared/Microsoft.NETCore.App/3.0.0-preview5-27626-15 Done! ✔
-```
-
-**Output**
-```
-Looking for runtime 2.2.6
-Removing: /home/clanderas/.dotnet/shared/Microsoft.AspNetCore.All/2.2.6 Done! ✔
-```
-
-**Output**
-```
-Looking for runtime 2.2.6
-Removing: /home/clanderas/.dotnet/shared/Microsoft.AspNetCore.All/2.2.6 Done! ✔
 ```
 
 ### **Remove all sdks**
