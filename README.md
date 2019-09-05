@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/804re7py0d5a6qs3/branch/master?svg=true)](https://ci.appveyor.com/project/CarlosLanderas/dotnet-tarball-cleanup)
+[![NuGet version (dotnet_tarball_cleanup)](https://img.shields.io/nuget/v/dotnet-tarball-cleanup.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-tarball-cleanup/) [![Build status](https://ci.appveyor.com/api/projects/status/804re7py0d5a6qs3/branch/master?svg=true)](https://ci.appveyor.com/project/CarlosLanderas/dotnet-tarball-cleanup)
 
 # Dotnet Tarball Cleanup Global Tool
 
@@ -45,7 +45,7 @@ Sdk 2.2.401 removed ✔
 
 ### **Remove runtimes matching regex**
 
-Dotnet and AspNetCoreruntimes have different minor versions so using a regex makes easier to clean all of them:
+Dotnet and AspNetCore runtimes have different minor versions so using a regex makes easier to clean all of them:
 
 ```
 dotnet-tarball-cleanup runtimes remove -r 3.0.0-preview5
