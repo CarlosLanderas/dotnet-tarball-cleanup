@@ -2,9 +2,9 @@
 
 # Dotnet Tarball Cleanup Global Tool
 
-## A simple global tool to list and remove sdks and runtimes when installed from tarballs using dotnet-install scripts
+## A simple global tool for Linux to list and remove sdks and runtimes when installed from tarballs using dotnet-install scripts
 
-This tool is a work in progress
+This tool is a work in progress, and has only been tested in Manjaro Linux
 
 ### Installation:
 
